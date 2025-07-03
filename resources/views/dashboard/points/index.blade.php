@@ -43,7 +43,7 @@
                                     {{ $place->title }}
                                 </td>
                                 <td class="project_progress">
-                                    {{ $place->description }}
+                                    {{ Str::words($place->description, 5, '...') }}
                                 </td>
                                  <td>
                                     {{ $place->lat }}

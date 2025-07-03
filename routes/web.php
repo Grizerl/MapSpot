@@ -14,9 +14,9 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function ():
     Route::resource('places', PlaceController::class);
 
     Route::get('/map/points', [LocationController::class, 'index'])->name('map.points.index');
-    
+
     Route::post('/places/{place}/comments', [CommentController::class, 'store'])->name('places.comments.store');
-    
+
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 });
 

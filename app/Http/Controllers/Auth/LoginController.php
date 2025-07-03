@@ -28,8 +28,7 @@ class LoginController extends Controller
     {
         $data = $request->validated();
 
-        if(Auth::attempt($data))
-        {
+        if (Auth::attempt($data)) {
             return redirect()->route('places.index');
         }
 
@@ -45,5 +44,5 @@ class LoginController extends Controller
         Auth::logout();
         return redirect()->route('login.form');
     }
-   
+
 }

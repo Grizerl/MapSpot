@@ -36,8 +36,7 @@ class PlaceController extends Controller
      */
     private function Image($request): mixed
     {
-        if ($request->hasFile('path')) 
-        {
+        if ($request->hasFile('path')) {
             return $request->file('path')->store('places', 'public');
         }
 
@@ -89,19 +88,17 @@ class PlaceController extends Controller
     public function update(PlaceRequest $request, int $id): RedirectResponse
     {
         $place = Place::findOrFail($id);
-        
+
         $data = $request->only(['title', 'description', 'lat', 'lng']);
-        
-        if($image = $this->Image($request))
-        {
+
+        if ($image = $this->Image($request)) {
             $data['path'] = $image;
-        }
-        else {
+        } else {
             $data['path'] = $place->path;
         }
-       
+
         $place->update($data);
-        
+
         return redirect()->back();
     }
 
