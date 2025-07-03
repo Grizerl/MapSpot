@@ -8,7 +8,7 @@
     @csrf
     <div class="mb-4">
         <label for="Name" class="form-label fw-semibold">Ім'я користувача</label>
-        <input type="text" class="form-control fs-6" name="name" placeholder="Your name" autocomplete="name">
+        <input type="text" class="form-control fs-6" name="name" placeholder="Enter your name" autocomplete="name">
         @error('name')
           <div class="text-danger">{{ $message }}</div>
         @enderror
@@ -28,7 +28,7 @@
         @enderror
     </div>
     <button type="submit" class="btn btn-primary w-100 fw-semibold" style="transition: background-color 0.3s ease;">
-        Зареєструватись
+        Створити обліковий запис
     </button>
   </form>
 </div>

@@ -6,10 +6,16 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
     <div class="container">
-        <a class="navbar-brand fw-bold">Google Maps</a>
+        <a class="navbar-brand fw-bold" href="{{ route('places.index') }}">Google Maps</a>
         <ul class="navbar-nav d-flex flex-row gap-3 mb-0">
             <li class="nav-item">
-                <a class="nav-link" href="#">Точки</a>
+                <a class="nav-link" href="{{ route('places.index') }}">Головна</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('map.points.index') }}">Всі локації</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('places.create') }}">Маркери</a>
             </li>
             <li class="nav-item">
                 <form action="{{ route('logout') }}" method="post">

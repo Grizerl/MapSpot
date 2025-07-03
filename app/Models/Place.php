@@ -13,6 +13,9 @@ class Place extends Model
         'user_id',
         'title',
         'description',
+        'path',
+        'lat',
+        'lng',
     ];
 
     /**
@@ -22,15 +25,6 @@ class Place extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
-    }
-
-    /**
-     * Summary of image
-     * @return HasMany<Image, Place>
-     */
-    public function images(): HasMany
-    {
-        return $this->hasMany(Image::class);
     }
 
     /**

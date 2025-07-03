@@ -7,10 +7,10 @@
             <a class="navbar-brand" href="{{ route('login.form') }}">Google Maps</a>
             <ul class="navbar-nav d-flex flex-row justify-content-center">
                 <li class="nav-item mx-2">
-                    <a class="btn btn-primary btn-smal" href="{{ route('login.form') }}">Login</a>
+                    <a class="btn btn-primary btn-smal" href="{{ route('login.form') }}">Авторизація</a>
                 </li>
                 <li class="nav-item mx-2">
-                    <a class="btn btn-secondary btn-smal" href="{{ route('register.form') }}">Register</a>
+                    <a class="btn btn-secondary btn-smal" href="{{ route('register.form') }}">Створити акаунт</a>
                 </li>
             </ul>
         </div>

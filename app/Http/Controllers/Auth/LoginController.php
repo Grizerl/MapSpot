@@ -26,7 +26,7 @@ class LoginController extends Controller
      */
     public function login(LoginRequest $request): RedirectResponse
     {
-        $data = $request->only('email', 'password');
+        $data = $request->validated();
 
         if(Auth::attempt($data))
         {
