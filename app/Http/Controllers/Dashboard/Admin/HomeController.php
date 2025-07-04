@@ -12,7 +12,11 @@ class HomeController extends Controller
     public function index(): View
     {
         $userCount = User::where('role', 'user')->count();
-        $placesCount = Place::count();
+
+        $placesCount = Place::whereHas('user', function ($query) {
+            $query->where('role', 'user');
+        })->count();
+
         return view('dashboard.admin.home', compact('userCount', 'placesCount'));
     }
 }

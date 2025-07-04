@@ -19,7 +19,7 @@
             </li>
             @can('view', auth()->user())
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.home.page') }}">Адмін панель</a>
+                <a class="nav-link" href="{{ route('admin.home.page') }}">Адміністративна панель</a>
             </li>
             @endcan
             <li class="nav-item">

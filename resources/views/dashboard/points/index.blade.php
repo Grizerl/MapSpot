@@ -21,7 +21,7 @@
                     <thead>
                         <tr>
                             <th style="width: 15%">
-                                Назва
+                                Назва   
                             </th>
                             <th style="width: 20%">
                                Опис
@@ -43,7 +43,7 @@
                                     {{ $place->title }}
                                 </td>
                                 <td class="project_progress">
-                                    {{ Str::words($place->description, 5, '...') }}
+                                    {{ Str::words($place->description, 4, '...') }}
                                 </td>
                                  <td>
                                     {{ $place->lat }}

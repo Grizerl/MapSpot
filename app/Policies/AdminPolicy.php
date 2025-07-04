@@ -9,7 +9,7 @@ class AdminPolicy
     /**
      * Create a new policy instance.
      */
-    public function view(User $user, User $model)
+    public function view(User $user, User $model): bool
     {
         return $model->role == 'admin';
     }

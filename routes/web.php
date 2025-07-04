@@ -20,7 +20,8 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function ():
 
     Route::post('/places/{place}/comments', [CommentController::class, 'store'])->name('places.comments.store');
 
-    Route::middleware([IsAdmin::class, 'auth', 'verified'])->prefix('admin')->group(function (): void {
+
+    Route::middleware([IsAdmin::class])->prefix('admin')->group(function (): void {
         Route::get('/', [HomeController::class, 'index'])->name('admin.home.page');
 
         Route::resource('points', AdminPlaceController::class)->except(['create', 'store']);
@@ -28,6 +29,10 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function ():
     });
 
 });
-Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::post('logout', [LoginController::class, 'logout'])
+    ->middleware('auth')
+    ->name('logout');
+
 
 require __DIR__.'/auth.php';

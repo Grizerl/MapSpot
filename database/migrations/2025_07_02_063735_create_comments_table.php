@@ -23,9 +23,6 @@ return new class () extends Migration {
             $table->text('content');
 
             $table->timestamps();
-
-            $table->index('place_id');
-            $table->index('user_id');
         });
     }
 

@@ -16,7 +16,10 @@ class AdminPlaceController extends Controller
      */
     public function index(): View
     {
-        $places = Place::paginate(15);
+        $places = Place::whereHas('user', function ($query) {
+            $query->where('role', 'user');
+        })->paginate(15);
+
         return view('dashboard.admin.places.index', compact('places'));
     }
 
@@ -44,6 +47,7 @@ class AdminPlaceController extends Controller
         $places = Place::findOrFail($id);
 
         $comments = $places->comments()->with('user')->paginate(5);
+
         return view('dashboard.admin.places.show', compact('places', 'comments'));
     }
 
@@ -53,6 +57,7 @@ class AdminPlaceController extends Controller
     public function edit(int $id): View
     {
         $places = Place::findOrFail($id);
+
         return view('dashboard.admin.places.edit', compact('places'));
     }
 
@@ -67,7 +72,6 @@ class AdminPlaceController extends Controller
 
         if ($request->hasFile('path')) {
             $image = $request->file('path')->store('places', 'public');
-
             $data['path'] = $image;
         } else {
             $data['path'] = $place->path;
@@ -84,6 +88,7 @@ class AdminPlaceController extends Controller
     public function destroy(int $id): RedirectResponse
     {
         Place::findOrFail($id)->delete();
+
         return redirect()->back();
     }
 }

@@ -11,9 +11,16 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
+    /**
+     * Summary of store
+     * @param \App\Http\Requests\Dashboard\User\CommentRequest $request
+     * @param int $id
+     * @return mixed|RedirectResponse
+     */
     public function store(CommentRequest $request, int $id): RedirectResponse
     {
         $user = Auth::user();
+
         $place = Place::findOrFail($id);
 
         Comment::create([

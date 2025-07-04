@@ -17,7 +17,9 @@ class PlaceController extends Controller
     public function index(): View
     {
         $user = Auth::user();
+
         $places = $user->places()->select('id', 'title', 'lat', 'lng')->get();
+
         return view('dashboard.map', compact('places'));
     }
 
@@ -69,8 +71,11 @@ class PlaceController extends Controller
      */
     public function show(int $id): View
     {
-        $place = Place::with('comments')->findOrFail($id);
-        return view('dashboard.places.show', compact('place'));
+        $places = Place::findOrFail($id);
+
+        $comments = $places->comments()->with('user')->paginate(3);
+
+        return view('dashboard.places.show', compact('places', 'comments'));
     }
 
     /**
@@ -79,6 +84,7 @@ class PlaceController extends Controller
     public function edit(int $id): View
     {
         $place = Place::findOrFail($id);
+
         return view('dashboard.places.edit', compact('place'));
     }
 
@@ -108,6 +114,7 @@ class PlaceController extends Controller
     public function destroy(Place $place): RedirectResponse
     {
         $place->delete();
+
         return redirect()->route('places.index');
     }
 }
