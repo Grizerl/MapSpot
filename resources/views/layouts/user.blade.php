@@ -17,6 +17,11 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('places.create') }}">Маркери</a>
             </li>
+            @can('view', auth()->user())
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.home.page') }}">Адмін панель</a>
+            </li>
+            @endcan
             <li class="nav-item">
                 <form action="{{ route('logout') }}" method="post">
                     @csrf
