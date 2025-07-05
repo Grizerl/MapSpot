@@ -26,7 +26,7 @@ class AdminPlaceRequest extends FormRequest
             'description' => 'nullable|max:255',
             'lat' => 'required|numeric|between:-90,90',
             'lng' => 'required|numeric|between:-180,180',
-            'path' => 'nullable|image|max:20480',
+            'path' => 'nullable|file|max:20480',
         ];
     }
 }

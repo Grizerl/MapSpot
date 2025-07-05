@@ -26,7 +26,7 @@ class PlaceRequest extends FormRequest
             'description' => 'nullable|max:255',
             'lat' => 'required|numeric|between:-90,90',
             'lng' => 'required|numeric|between:-180,180',
-            'path' => 'nullable|file|max:51200',
+            'path' => 'nullable|file|max:20480',
         ];
     }
 }
