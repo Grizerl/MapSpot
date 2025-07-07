@@ -13,7 +13,7 @@ Route::get('/', function () {
     return redirect()->route('login.form');
 });
 
-Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function (): void {
+Route::middleware(['auth', 'throttle:60,1'])->prefix('dashboard')->group(function (): void {
     Route::resource('places', PlaceController::class);
 
     Route::get('/map/points', [LocationController::class, 'index'])->name('map.points.index');
