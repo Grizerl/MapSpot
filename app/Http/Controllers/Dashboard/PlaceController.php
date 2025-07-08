@@ -99,17 +99,14 @@ class PlaceController extends Controller
 
         $data = $request->only(['title', 'description', 'lat', 'lng']);
 
-        if ($image = $this->storeImage($request)) 
-        {
-            if ($place->path && Storage::disk('public')->exists($place->path)) 
-            {
+        if ($image = $this->storeImage($request)) {
+            if ($place->path && Storage::disk('public')->exists($place->path)) {
                 Storage::disk('public')->delete($place->path);
             }
 
             $data['path'] = $image;
-            
-        } else 
-        {
+
+        } else {
             $data['path'] = $place->path;
         }
 
@@ -125,8 +122,7 @@ class PlaceController extends Controller
     {
         $place->delete();
 
-        if ($place->path && Storage::disk('public')->exists($place->path)) 
-        {
+        if ($place->path && Storage::disk('public')->exists($place->path)) {
             Storage::disk('public')->delete($place->path);
         }
 

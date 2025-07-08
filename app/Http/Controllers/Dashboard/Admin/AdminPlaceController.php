@@ -71,8 +71,7 @@ class AdminPlaceController extends Controller
 
         $data = $request->only(['title', 'description', 'lat', 'lng']);
 
-        if ($request->hasFile('path')) 
-        {
+        if ($request->hasFile('path')) {
             if ($place->path && Storage::disk('public')->exists($place->path)) {
                 Storage::disk('public')->delete($place->path);
             }
@@ -80,8 +79,7 @@ class AdminPlaceController extends Controller
             $image = $request->file('path')->store('places', 'public');
 
             $data['path'] = $image;
-        } 
-        else {
+        } else {
             $data['path'] = $place->path;
         }
 
@@ -101,7 +99,7 @@ class AdminPlaceController extends Controller
             Storage::disk('public')->delete($place->path);
         }
 
-        $place->delete(); 
+        $place->delete();
 
         return redirect()->back();
     }
