@@ -29,4 +29,5 @@ GOOGLE_MAPS_API_KEY=your_google_maps_api_key
 6. Generate the application key: `php artisan key:generate`.
 7. Run the database migrations: `php artisan migrate`.
 8. Run the seeder: `php artisan db:seed`.
-9. Start the Laravel development server: `php artisan serve`.
+9. Create a symbolic link to access files: `php artisan storage:link`.
+10. Start the Laravel development server: `php artisan serve`.
