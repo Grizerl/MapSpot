@@ -15,7 +15,7 @@ class CommentController extends Controller
      * Summary of store
      * @param \App\Http\Requests\Dashboard\User\CommentRequest $request
      * @param int $id
-     * @return mixed|RedirectResponse
+     * @return RedirectResponse
      */
     public function store(CommentRequest $request, int $id): RedirectResponse
     {

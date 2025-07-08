@@ -15,6 +15,9 @@
                 <a class="nav-link" href="{{ route('points.index')}}">Всі маркери користувачів</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="{{ route('places.index') }}">Назад до списку</a>
+            </li>
+            <li class="nav-item">
                 <form action="{{ route('logout') }}" method="post">
                     @csrf
                     <button class="nav-link">Вихід</button>

@@ -22,7 +22,7 @@ class RegisterController extends Controller
     /**
      * Summary of register
      * @param \App\Http\Requests\Auth\RegisterRequest $request
-     * @return mixed|RedirectResponse
+     * @return RedirectResponse
      */
     public function register(RegisterRequest $request): RedirectResponse
     {

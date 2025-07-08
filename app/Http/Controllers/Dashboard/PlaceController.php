@@ -8,6 +8,8 @@ use App\Models\Place;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 
 class PlaceController extends Controller
 {
@@ -33,10 +35,10 @@ class PlaceController extends Controller
 
     /**
      * Summary of Image
-     * @param mixed $request
-     * @return mixed
+     * @param Request $request
+     * @return string|null
      */
-    private function Image($request): mixed
+    private function storeImage(Request $request): ?string
     {
         if ($request->hasFile('path')) {
             return $request->file('path')->store('places', 'public');
@@ -52,7 +54,7 @@ class PlaceController extends Controller
     {
         $user = Auth::user();
 
-        $image = $this->Image($request);
+        $image = $this->storeImage($request);
 
         Place::create([
             'user_id' => $user->id,
@@ -97,9 +99,17 @@ class PlaceController extends Controller
 
         $data = $request->only(['title', 'description', 'lat', 'lng']);
 
-        if ($image = $this->Image($request)) {
+        if ($image = $this->storeImage($request)) 
+        {
+            if ($place->path && Storage::disk('public')->exists($place->path)) 
+            {
+                Storage::disk('public')->delete($place->path);
+            }
+
             $data['path'] = $image;
-        } else {
+            
+        } else 
+        {
             $data['path'] = $place->path;
         }
 
@@ -114,6 +124,11 @@ class PlaceController extends Controller
     public function destroy(Place $place): RedirectResponse
     {
         $place->delete();
+
+        if ($place->path && Storage::disk('public')->exists($place->path)) 
+        {
+            Storage::disk('public')->delete($place->path);
+        }
 
         return redirect()->route('places.index');
     }

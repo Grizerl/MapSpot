@@ -22,7 +22,7 @@ class LoginController extends Controller
     /**
      * Summary of login
      * @param \App\Http\Requests\Auth\LoginRequest $request
-     * @return mixed|RedirectResponse
+     * @return RedirectResponse
      */
     public function login(LoginRequest $request): RedirectResponse
     {
@@ -37,7 +37,7 @@ class LoginController extends Controller
 
     /**
      * Summary of logout
-     * @return mixed|RedirectResponse
+     * @return RedirectResponse
      */
     public function logout(): RedirectResponse
     {

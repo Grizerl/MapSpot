@@ -9,6 +9,10 @@ use Illuminate\Contracts\View\View;
 
 class HomeController extends Controller
 {
+    /**
+     * Summary of index
+     * @return View
+     */
     public function index(): View
     {
         $userCount = User::where('role', 'user')->count();

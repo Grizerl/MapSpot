@@ -8,6 +8,7 @@ use App\Models\Place;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AdminPlaceController extends Controller
 {
@@ -70,10 +71,17 @@ class AdminPlaceController extends Controller
 
         $data = $request->only(['title', 'description', 'lat', 'lng']);
 
-        if ($request->hasFile('path')) {
+        if ($request->hasFile('path')) 
+        {
+            if ($place->path && Storage::disk('public')->exists($place->path)) {
+                Storage::disk('public')->delete($place->path);
+            }
+
             $image = $request->file('path')->store('places', 'public');
+
             $data['path'] = $image;
-        } else {
+        } 
+        else {
             $data['path'] = $place->path;
         }
 
@@ -87,7 +95,13 @@ class AdminPlaceController extends Controller
      */
     public function destroy(int $id): RedirectResponse
     {
-        Place::findOrFail($id)->delete();
+        $place = Place::findOrFail($id);
+
+        if ($place->path && Storage::disk('public')->exists($place->path)) {
+            Storage::disk('public')->delete($place->path);
+        }
+
+        $place->delete(); 
 
         return redirect()->back();
     }
